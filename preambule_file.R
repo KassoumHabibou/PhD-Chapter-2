@@ -23,19 +23,22 @@ if (length(missing_packages) > 0) {
 lapply(required_packages, library, character.only = TRUE)
 
 
-######################## Importing datasets #################################
+######################## Importing datasets ####################################
 
 # unzip the file
-gzFile<- paste0(here::here(),"/input/individual_data/idh_zip/idhs_00020.dat.gz")
+gzFile<- paste0(here::here(),"/input/individual_data/idh_zip/idhs_00021.dat.gz")
 R.utils::gunzip(gzFile, remove = TRUE, ext="gz", FUN=gzfile)
 
 # Read DDI file and micro data using ipumsr package
-ddi <- read_ipums_ddi(paste0(here::here(),"/input/individual_data/ddi/idhs_00020.xml"))
-df <- read_ipums_micro(ddi, data_file = paste0(here::here(),"/input/individual_data/idh_zip/idhs_00020.dat"))
+ddi <- read_ipums_ddi(paste0(here::here(),"/input/individual_data/ddi/idhs_00021.xml"))
+df <- read_ipums_micro(ddi, data_file = paste0(here::here(),"/input/individual_data/idh_zip/idhs_00021.dat"))
 
 
 # Select relevant columns from the dataframe
 
 
 # Exporting to stata file
-haven::write_dta(df, paste0(here::here(),"/input/individual_data/dat/idhs_00020.dta"),version = 15)
+haven::write_dta(df, paste0(here::here(),"/input/individual_data/dat/idhs_00021.dta"),version = 15)
+
+
+
