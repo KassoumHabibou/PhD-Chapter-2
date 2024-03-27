@@ -1,0 +1,101 @@
+<metadata xml:lang="en"><Esri><CreaDate>20111115</CreaDate><CreaTime>16234600</CreaTime><ArcGISFormat>1.0</ArcGISFormat><ArcGISstyle>ISO 19139 Metadata Implementation Specification</ArcGISstyle><SyncOnce>TRUE</SyncOnce><ArcGISProfile>ISO19139</ArcGISProfile><DataProperties><lineage><Process export="False" Name="" ToolSource=""/></lineage><itemProps><itemLocation><linkage Sync="TRUE">file://\\ICF2011990\H$\GIS\08_GPS\01_Template\GPS_Metadata_Template</linkage><protocol Sync="TRUE">Local Area Network</protocol></itemLocation></itemProps><copyHistory><copy source="H:\GIS\08_GPS\01_Template\GPS_Metadata_Template" dest="\\ICF2011990\H$\GIS\08_GPS\01_Template\GPS_Metadata_Template" date="20111115" time="16234600"/></copyHistory></DataProperties><ModDate>20121115</ModDate><ModTime>14093900</ModTime><scaleRange><minScale>20000000</minScale><maxScale>5000</maxScale></scaleRange></Esri><dataIdInfo><idPurp>This shapefile provides the geographic information of the surveyed clusters.</idPurp><idAbs>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;P&gt;&lt;SPAN&gt;&lt;SPAN&gt;The geographic datafile contains the DHS cluster ID, DHS country code, FIPS country code, FIPS region name and code (if applicable), SALB region name and code (if applicable), DHS region name and code, source type (e.g. GPS, MIS, CEN, GAZ), urban or rural classification (i.e. U or R), latitude and longitude coordinates in decimal degrees, altitude in meters from either the GPS receiver and/or a digital elevation model (DEM), and the geographic datum (i.e. WGS84).&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</idAbs><idCredit>National Institute of Population Research and Training
+Dhaka, Bangladesh;
+Mitra and Associates
+Dhaka, Bangladesh;
+MEASURE DHS, ICF International
+Calverton, Maryland, USA</idCredit><idCitation xmlns=""><resTitle>Bangladesh 2011 Demographic and Health Survey</resTitle><resAltTitle>BDGE61FL.zip</resAltTitle><presForm xmlns=""><PresFormCd value="005"/></presForm><citRespParty xmlns=""><rpIndName>GIS Analyst</rpIndName><rpOrgName>ICF International</rpOrgName><rpPosName>GIS Analyst</rpPosName><rpCntInfo xmlns=""><cntAddress addressType=""><delPoint>11785 Beltsville Drive, Suite 400</delPoint><city>Calverton</city><adminArea>MD</adminArea><postCode>20705</postCode><eMailAdd>gpsrequests@measuredhs.com</eMailAdd><country>USA</country></cntAddress><cntPhone><voiceNum tddtty="">301.572.0200</voiceNum><faxNum>301.572.0999</faxNum></cntPhone><cntHours>9:00a – 5:00p EST</cntHours><cntOnlineRes xmlns=""><linkage>www.measuredhs.com</linkage></cntOnlineRes></rpCntInfo><role><RoleCd value="005"/></role></citRespParty><citId xmlns=""><identCode>BDGE61FL.zip</identCode><identAuth xmlns=""><citId xmlns=""><identCode>BDGE61FL.zip</identCode><identAuth xmlns=""><citId xmlns=""><identCode>BDGE61FL.zip</identCode></citId></identAuth></citId><resTitle>BDGE61FL.zip</resTitle></identAuth></citId></idCitation><searchKeys><keyword>Demographic and Health Survey</keyword><keyword>DHS</keyword><keyword>Global Positioning System</keyword><keyword>GPS</keyword></searchKeys><resConst xmlns=""><Consts xmlns=""><useLimit>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;P&gt;&lt;SPAN&gt;Datasets are made available with the following conditions: 1) Survey data files are distributed by MEASURE DHS for academic research/statistical analysis. Researchers need to provide a description of any research/analysis that will be using the data, before access is granted to the datasets. 2) Once downloaded, the datasets must not be passed on to other researchers without the written consent of MEASURE DHS. 3) All reports and publications based on the requested data must be sent to the MEASURE DHS Data Archive as a Portable Format Document (pdf) or a hard copy, for us to forward to the country(ies) whose data have been used.&lt;/SPAN&gt;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</useLimit></Consts></resConst><dataChar><CharSetCd value="004"/></dataChar><idPoC xmlns=""><rpIndName>GIS Analyst</rpIndName><rpOrgName>ICF International</rpOrgName><rpPosName>GIS Analyst</rpPosName><rpCntInfo xmlns=""><cntAddress addressType=""><delPoint>11785 Beltsville Drive, Suite 400</delPoint><city>Calverton</city><adminArea>MD</adminArea><postCode>20705</postCode><eMailAdd>gpsrequests@measuredhs.com</eMailAdd><country>USA</country></cntAddress><cntPhone><voiceNum tddtty="">301.572.0200</voiceNum><faxNum>301.572.0999</faxNum></cntPhone><cntHours>9:00a – 5:00p EST</cntHours><cntOnlineRes xmlns=""><linkage>www.measuredhs.com</linkage></cntOnlineRes></rpCntInfo><role><RoleCd value="005"/></role></idPoC><resMaint xmlns=""><maintFreq><MaintFreqCd value="011"/></maintFreq><maintScp><ScopeCd value="009"/></maintScp></resMaint><dataLang><languageCode value="eng"/></dataLang><spatRpType><SpatRepTypCd value="001"/></spatRpType><dataExt xmlns=""><exDesc>Bangladesh</exDesc></dataExt><tpCat><TopicCatCd value="009"/></tpCat><tpCat><TopicCatCd value="013"/></tpCat></dataIdInfo><mdFileID>BDGE61FL.zip</mdFileID><mdChar><CharSetCd value="004"/></mdChar><dataSetURI>http://www.measuredhs.com/what-we-do/survey/survey-display-349.cfm</dataSetURI><mdContact xmlns=""><rpIndName>GIS Analyst</rpIndName><rpOrgName>ICF International</rpOrgName><rpPosName>GIS Analyst</rpPosName><rpCntInfo xmlns=""><cntAddress addressType=""><delPoint>11785 Beltsville Drive, Suite 400</delPoint><city>Calverton</city><adminArea>MD</adminArea><postCode>20705</postCode><eMailAdd>gpsrequests@measuredhs.com</eMailAdd><country>USA</country></cntAddress><cntPhone><voiceNum tddtty="">301.572.0200</voiceNum><faxNum>301.572.0999</faxNum></cntPhone><cntHours>9:00a – 5:00p EST</cntHours><cntOnlineRes xmlns=""><linkage>www.measuredhs.com</linkage></cntOnlineRes></rpCntInfo><role><RoleCd value="005"/></role></mdContact><mdConst xmlns=""><Consts xmlns=""><useLimit>Datasets are made available with the following conditions:
+
+1. Survey data files are distributed by MEASURE DHS for academic research/statistical analysis. Researchers need to provide a description of any research/analysis that will be using the data, before access is granted to the datasets.
+
+2. Once downloaded, the datasets must not be passed on to other researchers without the written consent of MEASURE DHS.
+
+3. All reports and publications based on the requested data must be sent to the MEASURE DHS Data Archive as a Portable Format Document (pdf) or a hard copy, for us to forward to the country(ies) whose data have been used.</useLimit></Consts></mdConst><eainfo><detailed xmlns=""><enttyp><enttypl>BDGE61FL.zip</enttypl><enttypt>Shapefile</enttypt></enttyp><attr xmlns=""><attrlabl>DHSID</attrlabl><attalias>DHS Unique Identification</attalias><attrdef>14 character DHS identification code - DHSCC &amp; DHSYEAR &amp; DHSCLUST (with 8 digits)</attrdef><attrdefs>survey documentation</attrdefs></attr><attr xmlns=""><attrlabl>DHSCC</attrlabl><attalias>DHS Country Code</attalias><attrdef>2 letter DHS country code</attrdef><attrdefs>http://www.measuredhs.com/data/File-Types-and-Names.cfm</attrdefs></attr><attr xmlns=""><attrlabl>DHSYEAR</attrlabl><attalias>DHS Survey Year</attalias><attrdef>4 digit year of data collection </attrdef><attrdefs>survey documentation</attrdefs></attr><attr xmlns=""><attrlabl>DHSCLUST</attrlabl><attalias>DHS Cluster Number</attalias><attrdef>integer cluster identification number, this variable will match v001 in the DHS recode file</attrdef><attrdefs>survey documentation</attrdefs></attr><attr xmlns=""><attrlabl>CCFIPS</attrlabl><attalias>FIPS Country Code</attalias><attrdef>Federal Information Processing Standards (FIPS) 2 letter country code</attrdef><attrdefs>http://www.itl.nist.gov/fipspubs/fip10-4.htm </attrdefs></attr><attr xmlns=""><attrlabl>ADM1FIPS</attrlabl><attalias>FIPS Administrative Level 1 Code</attalias><attrdef>Federal Information Processing Standards (FIPS) 2  letter country code plus 2 letter/digit first sub-national administrative division code; if this information is not available, this field will be "NULL"</attrdef><attrdefs>http://www.itl.nist.gov/fipspubs/fip10-4.htm </attrdefs></attr><attr xmlns=""><attrlabl>ADM1FIPSNA</attrlabl><attalias>FIPS Administrative Level 1 Name</attalias><attrdef>Federal Information Processing Standards (FIPS) first sub-national administrative division name; if this information is not available, this field will be "NULL"</attrdef><attrdefs>http://www.itl.nist.gov/fipspubs/fip10-4.htm </attrdefs></attr><attr xmlns=""><attrlabl>ADM1SALBNA</attrlabl><attalias>SALB Administrative Level 1 Name</attalias><attrdef>Second Administrative Level Boundaries (SALB) first sub-national administrative division name; if this information is not available, this field will be "NULL"</attrdef><attrdefs>http://www.unsalb.org </attrdefs></attr><attr xmlns=""><attrlabl>ADM1SALBCO</attrlabl><attalias>SALB Administrative Level 1 Code</attalias><attrdef>Second Administrative Level Boundaries (SALB) first sub-national administrative division code; if this information is not available, this field will be "NULL"</attrdef><attrdefs>http://www.unsalb.org </attrdefs></attr><attr xmlns=""><attrlabl>ADM1DHS</attrlabl><attalias>Administrative Level 1 Code</attalias><attrdef>First sub-national administrative division code when the DHS sample is representative at the admin 1 level, this variable will usually match v024 in the DHS recode file; if this information is not available, this field will be "9999"</attrdef><attrdefs>survey documentation</attrdefs></attr><attr xmlns=""><attrlabl>ADM1NAME</attrlabl><attalias>Administrative Level 1 Name</attalias><attrdef>First sub-national administrative division name when the DHS sample is representative at the admin 1 level, this variable will usually match v024 in the DHS recode file; if this information is not available, this field will be "NULL"</attrdef><attrdefs>survey documentation</attrdefs></attr><attr xmlns=""><attrlabl>DHSREGCO</attrlabl><attalias>DHS Region Code</attalias><attrdef>integer region code associated with the DHS region created for sampling, this variable will match either v024 or the country specific region variable in the DHS recode file</attrdef><attrdefs>survey documentation</attrdefs></attr><attr xmlns=""><attrlabl>DHSREGNA</attrlabl><attalias>DHS Region Name</attalias><attrdef>name associated with the DHS region created for sampling, this variable will match either v024 or the country specific region variable in the DHS recode file</attrdef><attrdefs>survey documentation</attrdefs></attr><attr xmlns=""><attrlabl>SOURCE</attrlabl><attalias>Coordinate Source</attalias><attrdef>source of data used to determine the latitude and longitude coordinates</attrdef><attrdefs>DHS GIS Team</attrdefs><attrvai><attrvae>“GPS” for data collected by the survey team, "CEN" for preexisting data provided by the census agency/ministry, “GAZ” for data extracted from a gazetteer of village/place names, “MAP” for data extracted from a paper map, "MIS" for clusters in which data could not be fully verified</attrvae></attrvai></attr><attr xmlns=""><attrlabl>URBAN_RURA</attrlabl><attalias>Urban or Rural Classification</attalias><attrdef>cluster's Urban (U) and Rural (R) DHS sample classification</attrdef><attrdefs>survey documentation</attrdefs><attrvai><attrvae>“U” for urban clusters, "R" for rural clusters</attrvae></attrvai></attr><attr xmlns=""><attrlabl>LATNUM</attrlabl><attalias>Latitude</attalias><attrdef>cluster's latitude coordinate in decimal degrees</attrdef><attrdefs>see SOURCE field</attrdefs></attr><attr xmlns=""><attrlabl>LONGNUM</attrlabl><attalias>Longitude</attalias><attrdef>cluster's longitude coordinate in decimal degrees</attrdef><attrdefs>see SOURCE field</attrdefs></attr><attr xmlns=""><attrlabl>ALT_GPS</attrlabl><attalias>GPS Altitude</attalias><attrdef>cluster's elevation/altitude (in meters) recorded from the GPS receiver; if this information is not available, this field will be "9999"</attrdef><attrdefs>DHS field GPS receiver</attrdefs></attr><attr xmlns=""><attrlabl>ALT_DEM</attrlabl><attalias>DEM Altitude</attalias><attrdef>cluster's elevation/altitude (in meters) from the SRTM (Shuttle Radar Topography Mission) DEM (Digital Elevation Model) for the specified coordinate location, elevations are regularly spaced at 30-arc seconds or approximately 1 kilometer; if coordinates are missing, this field will be "9999"</attrdef><attrdefs>http://dds.cr.usgs.gov/srtm/version1/SRTM30</attrdefs></attr><attr xmlns=""><attrlabl>DATUM</attrlabl><attalias>Datum</attalias><attrdef>coordinate reference system and geographic datum, it is always "WGS84" for the World Geodetic System (WGS) 1984</attrdef><attrdefs>DHS GIS Team</attrdefs></attr></detailed></eainfo><dqInfo xmlns=""><dqScope><scpLvl><ScopeCd value="001"/></scpLvl></dqScope></dqInfo><mdHrLv><ScopeCd value="005"/></mdHrLv><mdMaint xmlns=""><maintFreq><MaintFreqCd value="011"/></maintFreq><maintScp><ScopeCd value="001"/></maintScp><dateNext>20110502</dateNext></mdMaint><mdDateSt>20110502</mdDateSt><Binary><Thumbnail><Data EsriPropertyType="PictureX">/9j/4AAQSkZJRgABAQEAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
+HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
+MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCACFAMgDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iii
+gAooooAKKKKACqmo6laaVa/aLyZY1JCIpPzSOeiKP4mPYDk1R8Ta7FoGliY7mubiVba1jRQ7SSvw
+oCll3Y5JGRwDXNy63qniLw/A/h2fTr6+sljluhd6fIgllCB18kOVCkkHkk7cg545AOwXVLYaKuq3
+Be0tfI+0SfaV8tol27jvB6EDrVmCaK5gjngkWSGVQ6OhyGUjIIPcEVzuvXd5YaHqmq32rQ6ZZmwU
+LHLaiY2kuDuY4P7zqBt6fL3zVXRdStvD+mRC/wBXub5tSn+02cEkD/aEilZcKYyS21WfrgbQQKAO
+woqhPrNhb3drbSz4e6jkliYKShVACxLgbQACOpFSabfrqdit0lvc24ZmXy7mIxuNrFclTzg4yPYi
+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</Data></Thumbnail></Binary><mdLang><languageCode value="eng"/></mdLang></metadata>
