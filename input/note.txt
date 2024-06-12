@@ -1,0 +1,4 @@
+           *************************************** Round 1 ***********************************
+
+there is vcode_n = number in the 001_mod_a_male but not in 001_census_ftf
+there is vcode = name in the 001_census_ftf  but not in 001_mod_a_male
