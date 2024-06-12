@@ -124,3 +124,7 @@ input/individual_panel_data/000_IFPRI-PRSSP_Description of the BIHS datasets (1)
 input/individual_panel_data/data/001_census_ftf.dta
 input/individual_panel_data/questionnaire/001_bangladesh_ihs_comm_questionnaire_2011-2012.pdf
 output/img/BIHS_rounds_and_date.jpeg
+/input
+/input
+/input/disaster_data
+/output
