@@ -54,6 +54,8 @@ df_r3_hh <- readxl::read_excel("output/data/r3_hh.xlsx")
 # Analysis of missing values and migration or attrition by region and migration.
 
 ## Interview status
+
+Theses tables summarize the interview status for hh survey in round 2 (before the TC Mora) and in round 3 (after the TC Mora).
 ```{r}
 ## define custom test
 fisher.test.simulate.p.values <- function(data, variable, by, ...) {
@@ -118,6 +120,217 @@ df_r1_hh %>%
     # Add difference statistics to the table
     #add_difference(),
     .header = "**{strata}**, N = {n}") #%>%
+```
+
+## Splitted hh
+
+```{r}
+
+df_r2_hh %>% 
+  #distinct(hh_id_parent, .keep_all = TRUE) %>% 
+  # Selecting relevant variables
+  # , labels = c("No affected district", "Affected district"),
+   select(hh_split, affected_upazila) %>% 
+  mutate(sample='round 2',      
+         hh_split = factor(hh_split, levels = c("0", "1"),labels = c("No", "Yes"),ordered = TRUE), affected_upazila = factor(affected_upazila, levels = c("0", "1"), labels = c("No affected", "Affected"), ordered = TRUE)) %>% 
+  
+  plyr::rbind.fill(
+    #For the sibling dataset
+    df_r3_hh %>%
+      #distinct(hh_id_parent, .keep_all = TRUE) %>% 
+  # Selecting relevant variables
+   select(hh_split, affected_upazila) %>% 
+  #rename(affected_upazila=Affected_district) %>% 
+   mutate( 
+     sample='round 3',
+     hh_split = factor(hh_split, levels = c("0", "1"), labels = c("No", "Yes"), ordered = TRUE), affected_upazila = factor(affected_upazila, levels = c("0", "1"), labels = c("No affected", "Affected"), ordered = TRUE))) %>%
+    tbl_strata(
+    strata = sample,
+    .tbl_fun =
+      ~ .x %>%
+      # Generate a summary table using "tbl_summary" for the specified columns
+      tbl_summary(
+    by = affected_upazila, 
+      label = list(
+        hh_split ~ "Household split (1=Yes, 0=No)"
+    #    height_cm ~ "height (cm)",
+    #    hhm_sex ~ "Sex",
+    #    hhm_age ~ "age (in year)",
+    #    relation_hhh ~ "relation with the head",
+    #    if_not_measured_why ~ "Why missing"
+    #    
+     ),
+    statistic = list(
+      all_categorical() ~ "{n} ({p}%)",
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    missing_text = "(Missing)",
+    digits = everything() ~ c(0,2),
+    missing = "always"
+  ) %>%
+      add_p(test=list(all_continuous() ~ "t.test", all_categorical() ~ "fisher.test.simulate.p.values")) %>%
+      # Modify the table header to provide a descriptive label
+      modify_header(label ~ ""),
+    # Add difference statistics to the table
+    #add_difference(),
+    .header = "**{strata}**, N = {n}") #%>%
+  #as_gt() %>%
+  #gt::gtsave('desc_table_summary.tex', path = here::here())
+```
+```{r}
+
+df_r2_hh %>% 
+  #distinct(hh_id_parent, .keep_all = TRUE) %>% 
+  # Selecting relevant variables
+  # , labels = c("No affected district", "Affected district"),
+   select(hh_split_bis, affected_upazila) %>% 
+  mutate(sample='round 2',      
+         hh_split_bis = factor(hh_split_bis, levels = c("0", "1"),labels = c("No", "Yes"),ordered = TRUE), affected_upazila = factor(affected_upazila, levels = c("0", "1"), labels = c("No affected", "Affected"), ordered = TRUE)) %>% 
+  
+  plyr::rbind.fill(
+    #For the sibling dataset
+    df_r3_hh %>%
+      #distinct(hh_id_parent, .keep_all = TRUE) %>% 
+  # Selecting relevant variables
+   select(hh_split_bis, affected_upazila) %>% 
+  #rename(affected_upazila=Affected_district) %>% 
+   mutate( 
+     sample='round 3',
+     hh_split_bis = factor(hh_split_bis, levels = c("0", "1"), labels = c("No", "Yes"), ordered = TRUE), affected_upazila = factor(affected_upazila, levels = c("0", "1"), labels = c("No affected", "Affected"), ordered = TRUE))) %>%
+    tbl_strata(
+    strata = sample,
+    .tbl_fun =
+      ~ .x %>%
+      # Generate a summary table using "tbl_summary" for the specified columns
+      tbl_summary(
+    by = affected_upazila, 
+      label = list(
+        hh_split_bis ~ "Household split infant (1=Yes, 0=No)"
+    #    height_cm ~ "height (cm)",
+    #    hhm_sex ~ "Sex",
+    #    hhm_age ~ "age (in year)",
+    #    relation_hhh ~ "relation with the head",
+    #    if_not_measured_why ~ "Why missing"
+    #    
+     ),
+    statistic = list(
+      all_categorical() ~ "{n} ({p}%)",
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    missing_text = "(Missing)",
+    digits = everything() ~ c(0,2),
+    missing = "always"
+  ) %>%
+      add_p(test=list(all_continuous() ~ "t.test", all_categorical() ~ "fisher.test.simulate.p.values")) %>%
+      # Modify the table header to provide a descriptive label
+      modify_header(label ~ ""),
+    # Add difference statistics to the table
+    #add_difference(),
+    .header = "**{strata}**, N = {n}") #%>%
+  #as_gt() %>%
+  #gt::gtsave('desc_table_summary.tex', path = here::here())
+```
+## Hh's head religion
+
+```{r}
+
+df_r1_hh %>% 
+  #distinct(hh_id_parent, .keep_all = TRUE) %>% 
+  # Selecting relevant variables
+  # , labels = c("No affected district", "Affected district"),
+   select(hh_head_religion, affected_upazila) %>% 
+  mutate(sample='round 1',      
+         hh_head_religion = factor(hh_head_religion), 
+         affected_upazila = factor(affected_upazila, levels = c("0", "1"), labels = c("No affected", "Affected"), ordered = TRUE)) %>%
+  
+  plyr::rbind.fill(df_r2_hh %>% 
+  #distinct(hh_id_parent, .keep_all = TRUE) %>% 
+  # Selecting relevant variables
+  # , labels = c("No affected district", "Affected district"),
+   select(hh_head_religion, affected_upazila) %>% 
+  mutate(sample='round 2',      
+         hh_head_religion = factor(hh_head_religion), affected_upazila = factor(affected_upazila, levels = c("0", "1"), labels = c("No affected", "Affected"), ordered = TRUE))) %>% 
+  
+  plyr::rbind.fill(
+    #For the sibling dataset
+    df_r3_hh %>%
+      #distinct(hh_id_parent, .keep_all = TRUE) %>% 
+  # Selecting relevant variables
+   select(hh_head_religion, affected_upazila) %>% 
+  #rename(affected_upazila=Affected_district) %>% 
+   mutate( 
+     sample='round 3',
+     hh_head_religion = factor(hh_head_religion), 
+     affected_upazila = factor(affected_upazila, levels = c("0", "1"), labels = c("No affected", "Affected"), ordered = TRUE))) %>%
+    tbl_strata(
+    strata = sample,
+    .tbl_fun =
+      ~ .x %>%
+      # Generate a summary table using "tbl_summary" for the specified columns
+      tbl_summary(
+    by = affected_upazila, 
+      label = list(
+        hh_head_religion ~ "hh head religion"
+    #    height_cm ~ "height (cm)",
+    #    hhm_sex ~ "Sex",
+    #    hhm_age ~ "age (in year)",
+    #    relation_hhh ~ "relation with the head",
+    #    if_not_measured_why ~ "Why missing"
+    #    
+     ),
+    statistic = list(
+      all_categorical() ~ "{n} ({p}%)",
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    missing_text = "(Missing)",
+    digits = everything() ~ c(0,2),
+    missing = "always"
+  ) %>%
+      add_p(test=list(all_continuous() ~ "t.test", all_categorical() ~ "fisher.test.simulate.p.values")) %>%
+      # Modify the table header to provide a descriptive label
+      modify_header(label ~ ""),
+    # Add difference statistics to the table
+    #add_difference(),
+    .header = "**{strata}**, N = {n}") #%>%
+  #as_gt() %>%
+  #gt::gtsave('desc_table_summary.tex', path = here::here())
+```
+
+```{r}
+df_r1_hh %>% 
+  #distinct(hh_id_parent, .keep_all = TRUE) %>% 
+  # Selecting relevant variables
+  # , labels = c("No affected district", "Affected district"),
+   select(hh_head_religion, interview_status_r2, interview_status_r3) %>% 
+  mutate(
+         #interview_status = factor(interview_status),
+         interview_status_r2 = factor(interview_status_r2), 
+         interview_status_r3 = factor(interview_status_r3)) %>% 
+  
+      # Generate a summary table using "tbl_summary" for the specified columns
+  tbl_summary(
+  by = hh_head_religion, 
+      label = list(
+        hh_head_religion ~ "hh head religion",
+        #interview_status ~ "interview status round 1",
+        interview_status_r2 ~ "interview status round 2",
+        interview_status_r3 ~ "interview status round 3"
+    #    hhm_age ~ "age (in year)",
+    #    relation_hhh ~ "relation with the head",
+    #    if_not_measured_why ~ "Why missing"
+    #    
+     ),
+    statistic = list(
+      all_categorical() ~ "{n} ({p}%)",
+      all_continuous() ~ "{mean} ({sd})"
+    ),
+    missing_text = "(Missing)",
+    digits = everything() ~ c(0,2),
+    missing = "always"
+  ) %>%
+      add_p(test=list(all_continuous() ~ "t.test", all_categorical() ~ "fisher.test.simulate.p.values")) 
+  #as_gt() %>%
+  #gt::gtsave('desc_table_summary.tex', path = here::here())
 ```
 
 
