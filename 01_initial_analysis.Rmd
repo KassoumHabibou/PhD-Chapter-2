@@ -73,7 +73,7 @@ df_r3_anthr2 <- readxl::read_excel("output/data/r3_underfive.xlsx")
 
 
 ## Final dataset
-df_global_corrected <- readxl::read_excel("output/data/df_global.xlsx", 
+df_global_corrected <- readxl::read_excel("output/data/df_global_corrected.xlsx", 
     col_types = c("skip", "text", "text", 
         "numeric", "numeric", "text", "text", 
         "text", "text", "numeric", "text", 
@@ -529,62 +529,98 @@ df_r1_hh %>%
 ```
 
 ```{r}
-
-df_r1_hh %>% 
-
-  # Selecting relevant variables
-   select(weight_kg,height_cm,if_not_measured_why,hhm_sex,hhm_age,relation_hhh,affected_upazila) %>% 
-  mutate(sample='round 1') %>% 
-  
-  plyr::rbind.fill(
-    #For the sibling dataset
-    r2_data %>%
-select(weight_kg,height_cm,if_not_measured_why,hhm_sex,hhm_age,relation_hhh, affected_upazila) %>% 
-  #rename(affected_upazila=Affected_district) %>% 
-   mutate( 
-     sample='round 2',
-     affected_upazila = factor(affected_upazila, levels = c("0", "1"), labels = c("No affected district", "Affected district"), ordered = TRUE)) %>% 
-  filter(!is.na(if_not_measured_why))) %>%
-
-  tbl_strata(
-    strata = sample,
-    .tbl_fun =
-      ~ .x %>%
-      # Generate a summary table using "tbl_summary" for the specified columns
-      tbl_summary(
-    by = affected_upazila, 
-     label = list(
-       weight_kg ~ "weight (kg)",
-       height_cm ~ "height (cm)",
-       hhm_sex ~ "Sex",
-       hhm_age ~ "age (in year)",
-       relation_hhh ~ "relation with the head",
-       if_not_measured_why ~ "Why missing"
-       
-    ),
-    statistic = list(
-      all_categorical() ~ "{n} ({p}%)",
-      all_continuous() ~ "{mean} ({sd})"
-    ),
-    missing_text = "(Missing)",
-    digits = everything() ~ c(2,2),
-    missing = "always"
-  ) %>%
-      add_p(test=list(all_continuous() ~ "t.test", all_categorical() ~ "fisher.test.simulate.p.values")) %>%
-      # Modify the table header to provide a descriptive label
-      modify_header(label ~ "Characteristics of children"),
-    # Add difference statistics to the table
-    #add_difference(),
-    .header = "**{strata}**, N = {n}") #%>%
-  #as_gt() %>%
-  #gt::gtsave('desc_table_summary.tex', path = here::here())
+# 
+# df_r1_hh %>% 
+# 
+#   # Selecting relevant variables
+#    select(weight_kg,height_cm,if_not_measured_why,hhm_sex,hhm_age,relation_hhh,affected_upazila) %>% 
+#   mutate(sample='round 1') %>% 
+#   
+#   plyr::rbind.fill(
+#     #For the sibling dataset
+#     r2_data %>%
+# select(weight_kg,height_cm,if_not_measured_why,hhm_sex,hhm_age,relation_hhh, affected_upazila) %>% 
+#   #rename(affected_upazila=Affected_district) %>% 
+#    mutate( 
+#      sample='round 2',
+#      affected_upazila = factor(affected_upazila, levels = c("0", "1"), labels = c("No affected district", "Affected district"), ordered = TRUE)) %>% 
+#   filter(!is.na(if_not_measured_why))) %>%
+# 
+#   tbl_strata(
+#     strata = sample,
+#     .tbl_fun =
+#       ~ .x %>%
+#       # Generate a summary table using "tbl_summary" for the specified columns
+#       tbl_summary(
+#     by = affected_upazila, 
+#      label = list(
+#        weight_kg ~ "weight (kg)",
+#        height_cm ~ "height (cm)",
+#        hhm_sex ~ "Sex",
+#        hhm_age ~ "age (in year)",
+#        relation_hhh ~ "relation with the head",
+#        if_not_measured_why ~ "Why missing"
+#        
+#     ),
+#     statistic = list(
+#       all_categorical() ~ "{n} ({p}%)",
+#       all_continuous() ~ "{mean} ({sd})"
+#     ),
+#     missing_text = "(Missing)",
+#     digits = everything() ~ c(2,2),
+#     missing = "always"
+#   ) %>%
+#       add_p(test=list(all_continuous() ~ "t.test", all_categorical() ~ "fisher.test.simulate.p.values")) %>%
+#       # Modify the table header to provide a descriptive label
+#       modify_header(label ~ "Characteristics of children"),
+#     # Add difference statistics to the table
+#     #add_difference(),
+#     .header = "**{strata}**, N = {n}") #%>%
+#   #as_gt() %>%
+#   #gt::gtsave('desc_table_summary.tex', path = here::here())
 ```
 
-## Study Variables
+```{r}
 
-### Socio-demographic variables
+lst_menage = df_r1_hh %>% 
+      filter(hh_split_r2==0 & hh_split_r3==0) %>% 
+      select(hh_id) %>% 
+      pull()
 
-### Filtering to obtained only needed
+all_comb <- df_r1_hh %>%
+            select(hh_id,survey_round) %>% 
+            filter(hh_id %in% lst_menage) %>% 
+            plyr::rbind.fill(df_r2_hh %>%
+            select(hh_id,survey_round)%>% 
+            filter(hh_id %in% lst_menage)) %>% 
+            plyr::rbind.fill(df_r3_hh %>%
+            select(hh_id,survey_round)%>% 
+            filter(hh_id %in% lst_menage)) %>% 
+            expand(hh_id,survey_round)
+
+# Use with `right_join()` to fill in missing rows (in data)
+all_comb <- df_r1_hh %>%
+          select(hh_id,survey_round, hh_size, affected_upazila,treat_group, survey_year) %>% 
+          filter(hh_id %in% lst_menage)%>% 
+          plyr::rbind.fill(df_r2_hh %>%
+          select(hh_id,survey_round, hh_size, affected_upazila,treat_group, survey_year)%>% 
+          filter(hh_id %in% lst_menage))%>% 
+          plyr::rbind.fill(df_r3_hh %>%
+          select(hh_id,survey_round, hh_size, affected_upazila,treat_group, survey_year)%>% 
+          filter(hh_id %in% lst_menage))%>% 
+  dplyr::right_join(all_comb) %>% 
+  mutate(
+         affected_upazila = ifelse(is.na(hh_size), NA, affected_upazila),
+         treat_group = ifelse(is.na(hh_size), NA, treat_group))
+# survey_year = ifelse(survey_round==1,2011,
+#                               ifelse(survey_round==2,2015,
+#                                      ifelse(survey_round==3,2018,NA))),
+
+panelView::panelview( 1 ~ treat_group, gridOff = TRUE, by.timing = TRUE,
+          data = all_comb, index = c("hh_id","survey_year"), display.all = TRUE,
+          xlab = "Nbr household", ylab = "", pre.post = TRUE, by.unit=TRUE,  background = "white",cex.main = 20, cex.axis= 8, cex.lab = 12, cex.legend = 12, collapse.history = "TRUE", main = "Traitement status")
+```
+
 
 ```{r}
 # df_global %>% 
@@ -595,9 +631,117 @@ select(weight_kg,height_cm,if_not_measured_why,hhm_sex,hhm_age,relation_hhh, aff
 
 # used expand to create 
 # Na because unborn vs NA
-panelView::panelview(1  ~ weight_kg, 
-          data = df_global, index = c("member_id","survey_year"), 
-          xlab = "Year", ylab = "", pre.post = TRUE, by.unit=TRUE)
+# niveau ménage
+
+lst_menage = df_r1_hh %>% 
+      filter(hh_split_r2==0 & hh_split_r3==0 & interview_status_r3=="Complete") %>% 
+      select(hh_id) %>% 
+      pull()
+
+all_comb <- df_r1_hh %>%
+            select(hh_id,survey_round) %>% 
+            filter(hh_id %in% lst_menage) %>% 
+            plyr::rbind.fill(df_r2_hh %>%
+            select(hh_id,survey_round)%>% 
+            filter(hh_id %in% lst_menage)) %>% 
+            plyr::rbind.fill(df_r3_hh %>%
+            select(hh_id,survey_round)%>% 
+            filter(hh_id %in% lst_menage)) %>% 
+            expand(hh_id,survey_round)
+
+# Use with `right_join()` to fill in missing rows (in data)
+all_comb <- df_r1_hh %>%
+          select(hh_id,survey_round, hh_size, affected_upazila,treat_group, survey_year) %>% 
+          filter(hh_id %in% lst_menage)%>% 
+          plyr::rbind.fill(df_r2_hh %>%
+          select(hh_id,survey_round, hh_size, affected_upazila,treat_group, survey_year)%>% 
+          filter(hh_id %in% lst_menage))%>% 
+          plyr::rbind.fill(df_r3_hh %>%
+          select(hh_id,survey_round, hh_size, affected_upazila,treat_group, survey_year)%>% 
+          filter(hh_id %in% lst_menage))%>% 
+  dplyr::right_join(all_comb) %>% 
+  mutate(
+         affected_upazila = ifelse(is.na(hh_size), NA, affected_upazila),
+         treat_group = ifelse(is.na(hh_size), NA, treat_group))
+# survey_year = ifelse(survey_round==1,2011,
+#                               ifelse(survey_round==2,2015,
+#                                      ifelse(survey_round==3,2018,NA))),
+
+panelView::panelview( 1 ~ treat_group, gridOff = TRUE, by.timing = TRUE,
+          data = all_comb, index = c("hh_id","survey_year"), display.all = TRUE,
+          xlab = "Year", ylab = "Nbr household", pre.post = TRUE, by.unit=TRUE,  background = "white",cex.main = 20, cex.axis= 8, cex.lab = 12, cex.legend = 12, shade.post = TRUE, collapse.history = "TRUE", main = "Traitement status")
+```
+
+## Study Variables
+
+### Socio-demographic variables
+
+### Filtering to obtained only needed
+
+```{r}
+# niveau individus
+
+lst_menage = df_r1_hh %>% 
+      filter(hh_split_r2==0 & hh_split_r3==0 & interview_status_r3=="Complete") %>% 
+      select(hh_id) %>% 
+      pull()
+
+all_comb <- df_global %>%
+            select(hh_id,hhm_id, member_id, survey_year) %>% 
+            filter(hh_id %in% lst_menage) %>% 
+            expand(member_id,survey_year)
+
+# Use with `right_join()` to fill in missing rows (in data)
+all_comb <- df_global %>%
+            select(hh_id,hhm_id, member_id, survey_year, affected_upazila, treat_group, height_cm, weight_kg) %>% 
+            filter(hh_id %in% lst_menage) %>% 
+  dplyr::right_join(all_comb) #%>% 
+  # mutate(
+  #        affected_upazila = ifelse(is.na(hh_size), NA, affected_upazila),
+  #        treat_group = ifelse(is.na(hh_size), NA, treat_group))
+# survey_year = ifelse(survey_round==1,2011,
+#                               ifelse(survey_round==2,2015,
+#                                      ifelse(survey_round==3,2018,NA))),
+
+panelView::panelview(weight_kg ~ treat_group + height_cm, gridOff = TRUE, by.timing = TRUE,
+          data = all_comb, index = c("member_id","survey_year"), display.all = TRUE,
+          xlab = "Year", ylab = "Nbr individuals", pre.post = TRUE, by.unit=TRUE,  background = "white",cex.main = 20, cex.axis= 8, cex.lab = 12, cex.legend = 12, shade.post = TRUE, collapse.history = "TRUE", main = "Traitement status")
+```
+
+```{r}
+# niveau individus
+
+lst_menage = df_r1_hh %>% 
+      filter(hh_split_r2==0 & hh_split_r3==0 & interview_status_r3=="Complete") %>% 
+      select(hh_id) %>% 
+      pull()
+
+lst_ind <- df_r3_anthr2 %>% 
+            select(hh_id,member_id, hhm_status, hhm_age) %>%
+            filter(hh_id %in% lst_menage & hhm_status=="Both previous round and current round member" & hhm_age >= 3) %>% 
+            plyr::rbind.fill(df_r3_anthr1 %>% 
+            select(hh_id,member_id, hhm_status, hhm_age) %>% 
+            filter(hh_id %in% lst_menage & hhm_status=="Both previous round and current round member" & hhm_age < 20)) %>% 
+            # filter(hh_id %in% lst_menage) %>% 
+            # filter(hhm_status=="Both previous round and current round member") %>% 
+            # filter(hhm_age >= 3 & hhm_age < 20) %>% 
+            select(member_id) %>% 
+            pull()
+
+all_comb <- df_global %>%
+            dplyr::select(member_id, survey_year) %>% 
+            dplyr::filter(member_id %in% lst_ind) %>% 
+            expand(member_id,survey_year)
+
+# Use with `right_join()` to fill in missing rows (in data)
+all_comb <- df_global %>%
+            select(hh_id,hhm_id, member_id, survey_year, affected_upazila, treat_group, height_cm, weight_kg) %>% 
+            filter(hh_id %in% lst_menage) %>% 
+  dplyr::right_join(all_comb) 
+
+panelView::panelview(weight_kg ~ treat_group + height_cm, gridOff = TRUE, by.timing = TRUE,
+          data = all_comb, index = c("member_id","survey_year"), display.all = TRUE,
+          xlab = "Year", ylab = "Nbr individuals", pre.post = TRUE, by.unit=TRUE,  background = "white",cex.main = 20, cex.axis= 8, cex.lab = 12, cex.legend = 12, shade.post = TRUE, collapse.history = "TRUE", main = "Traitement status")
 ```
 
 
